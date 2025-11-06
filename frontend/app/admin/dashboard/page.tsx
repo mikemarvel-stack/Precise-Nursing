@@ -58,15 +58,25 @@ export default function AdminDashboard() {
   const [customOrders, setCustomOrders] = useState([])
 
   useEffect(() => {
+    // Check admin authentication
+    const adminToken = localStorage.getItem('adminToken')
+    if (!adminToken) {
+      window.location.href = '/admin-access'
+      return
+    }
+    
     const userData = localStorage.getItem('user')
     if (!userData) {
-      // For demo purposes, create a mock admin user
-      const mockUser = { username: 'Admin', email: 'admin@precisenursing.com', role: { type: 'admin' } }
-      setUser(mockUser)
+      window.location.href = '/admin-access'
       return
     }
     
     const parsedUser = JSON.parse(userData)
+    if (parsedUser.role?.type !== 'admin') {
+      window.location.href = '/admin-access'
+      return
+    }
+    
     setUser(parsedUser)
   }, [])
 
@@ -100,6 +110,7 @@ export default function AdminDashboard() {
               <Button 
                 onClick={() => {
                   localStorage.removeItem('user')
+                  localStorage.removeItem('adminToken')
                   window.location.href = '/'
                 }} 
                 variant="outline"

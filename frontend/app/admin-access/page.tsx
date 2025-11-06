@@ -17,8 +17,18 @@ export default function AdminAccessPage() {
     
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    if (credentials.username && credentials.password) {
+    // Simple admin authentication (replace with real auth)
+    if (credentials.username === 'admin' && credentials.password === 'admin123') {
+      // Store admin session
+      localStorage.setItem('adminToken', 'admin-authenticated')
+      localStorage.setItem('user', JSON.stringify({
+        username: 'Admin',
+        email: 'admin@precisenursing.com',
+        role: { type: 'admin' }
+      }))
       window.location.href = '/admin/dashboard'
+    } else {
+      alert('Invalid credentials. Use: admin / admin123')
     }
     
     setIsLoading(false)
@@ -77,7 +87,7 @@ export default function AdminAccessPage() {
           
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              Demo: Use any username and password
+              Demo: admin / admin123
             </p>
             <Button 
               variant="ghost" 
