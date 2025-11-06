@@ -1,16 +1,15 @@
-const strapi = require('@strapi/strapi');
+const strapi = require('@strapi/strapi')
 
-let instance;
+let instance
 
 async function createStrapi() {
   if (!instance) {
-    instance = strapi({ distDir: './dist' });
-    await instance.load();
+    instance = await strapi().start()
   }
-  return instance;
+  return instance
 }
 
 module.exports = async (req, res) => {
-  const strapiInstance = await createStrapi();
-  return strapiInstance.server.app(req, res);
-};
+  const app = await createStrapi()
+  app(req, res)
+}
