@@ -33,7 +33,7 @@ export default factories.createCoreController('api::payment.payment', ({ strapi 
           currency,
           status: 'pending',
           userId: ctx.state.user?.id,
-          metadata,
+          metadata: JSON.stringify(metadata),
         },
       })
 
@@ -57,18 +57,26 @@ export default factories.createCoreController('api::payment.payment', ({ strapi 
       switch (event.type) {
         case 'payment_intent.succeeded':
           const paymentIntent = event.data.object
-          await strapi.entityService.update('api::payment.payment', 
-            { stripePaymentIntentId: paymentIntent.id },
-            { data: { status: 'completed' } }
-          )
+          const successPayment = await strapi.entityService.findMany('api::payment.payment', {
+            filters: { stripePaymentIntentId: paymentIntent.id },
+          })
+          if (successPayment.length > 0) {
+            await strapi.entityService.update('api::payment.payment', successPayment[0].id, {
+              data: { status: 'completed' }
+            })
+          }
           break
 
         case 'payment_intent.payment_failed':
           const failedPayment = event.data.object
-          await strapi.entityService.update('api::payment.payment',
-            { stripePaymentIntentId: failedPayment.id },
-            { data: { status: 'failed' } }
-          )
+          const failedPaymentRecord = await strapi.entityService.findMany('api::payment.payment', {
+            filters: { stripePaymentIntentId: failedPayment.id },
+          })
+          if (failedPaymentRecord.length > 0) {
+            await strapi.entityService.update('api::payment.payment', failedPaymentRecord[0].id, {
+              data: { status: 'failed' }
+            })
+          }
           break
       }
 
