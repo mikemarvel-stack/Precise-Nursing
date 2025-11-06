@@ -39,9 +39,6 @@ export function Navbar() {
             <a href="/custom-order" className="text-gray-700 hover:text-blue-600">
               Custom Order
             </a>
-            <a href="/admin-access" className="text-gray-500 hover:text-blue-600 text-sm">
-              Admin
-            </a>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
@@ -100,9 +97,6 @@ export function Navbar() {
               </a>
               <a href="/custom-order" className="text-gray-700 hover:text-blue-600">
                 Custom Order
-              </a>
-              <a href="/admin-access" className="text-gray-500 hover:text-blue-600 text-sm">
-                Admin
               </a>
               {user ? (
                 <>
