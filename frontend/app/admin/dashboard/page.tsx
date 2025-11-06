@@ -195,10 +195,10 @@ export default function AdminDashboard() {
             <CardContent className="space-y-3">
               <Button 
                 className="w-full justify-start bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700" 
-                onClick={() => window.open('/admin/content-manager', '_blank')}
+                onClick={() => window.location.href = '/admin/content'}
               >
                 <FileText className="w-4 h-4 mr-2" />
-                Manage Documents
+                Edit Solutions
               </Button>
               <Button 
                 className="w-full justify-start bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700" 

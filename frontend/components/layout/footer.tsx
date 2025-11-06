@@ -34,7 +34,7 @@ export function Footer() {
               <li><a href="/custom-order" className="text-gray-300 hover:text-white">Custom Orders</a></li>
               <li><a href="/my-orders" className="text-gray-300 hover:text-white">My Orders</a></li>
               <li><a href="/auth/register" className="text-gray-300 hover:text-white">Register</a></li>
-              <li><a href="/admin-access" className="text-gray-500 hover:text-blue-400 text-sm">Admin Access</a></li>
+              <li><a href="/admin/dashboard" className="text-gray-500 hover:text-blue-400 text-sm">Admin Login</a></li>
             </ul>
           </div>
 

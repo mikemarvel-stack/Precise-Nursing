@@ -39,7 +39,8 @@ export default function ContentManagerPage() {
     category: 'nursing-assignment',
     level: 'bsn',
     price: 0,
-    file: null as File | null
+    file: null as File | null,
+    image: null as File | null
   })
 
   const categories = [
@@ -100,7 +101,8 @@ export default function ContentManagerPage() {
       category: doc.category,
       level: doc.level,
       price: doc.price,
-      file: null
+      file: null,
+      image: null
     })
     setIsEditing(true)
   }
@@ -130,7 +132,8 @@ export default function ContentManagerPage() {
       category: 'nursing-assignment',
       level: 'bsn',
       price: 0,
-      file: null
+      file: null,
+      image: null
     })
     setEditingDoc(null)
     setIsEditing(false)
@@ -235,16 +238,29 @@ export default function ContentManagerPage() {
                 />
               </div>
 
-              <div>
-                <Label htmlFor="file">Document File</Label>
-                <input
-                  id="file"
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={(e) => setFormData({...formData, file: e.target.files?.[0] || null})}
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <p className="text-sm text-gray-500 mt-1">PDF, DOC, DOCX files only</p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <Label htmlFor="file">Document File</Label>
+                  <input
+                    id="file"
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={(e) => setFormData({...formData, file: e.target.files?.[0] || null})}
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <p className="text-sm text-gray-500 mt-1">PDF, DOC, DOCX files only</p>
+                </div>
+                <div>
+                  <Label htmlFor="image">Preview Image (SEO)</Label>
+                  <input
+                    id="image"
+                    type="file"
+                    accept=".jpg,.jpeg,.png,.webp"
+                    onChange={(e) => setFormData({...formData, image: e.target.files?.[0] || null})}
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <p className="text-sm text-gray-500 mt-1">JPG, PNG, WebP for better SEO indexing</p>
+                </div>
               </div>
 
               <div className="flex gap-3">
