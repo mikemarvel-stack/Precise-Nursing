@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-// In-memory data store (replace with a database in production)
-let documents = [
-  { id: '1', title: 'Sample Document 1', description: 'This is a sample.', category: 'case-study', level: 'bsn', price: 10.99, fileUrl: '/documents/sample1.pdf', imageUrl: '/images/sample1.jpg' },
-  { id: '2', title: 'Sample Document 2', description: 'This is another sample.', category: 'care-plan', level: 'msn', price: 15.50, fileUrl: '/documents/sample2.pdf', imageUrl: '/images/sample2.jpg' },
-];
+import { documents } from '@/lib/data';
+import { Document } from '@/types/document';
 
 // GET a single document by ID
 export async function GET(
@@ -45,7 +41,7 @@ export async function PUT(
     // In a real app, you would handle file uploads here
     // For now, we just update the text fields
 
-    const updatedDocument = {
+    const updatedDocument: Document = {
       ...documents[docIndex],
       title,
       description,

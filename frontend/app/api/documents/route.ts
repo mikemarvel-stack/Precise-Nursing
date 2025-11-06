@@ -1,14 +1,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
-
-// In-memory data store (replace with a database in production)
-// NOTE: This should be the same data source as in [id]/route.ts.
-// For a real app, move this to a shared module or a database.
-let documents = [
-  { id: '1', title: 'Sample Document 1', description: 'This is a sample.', category: 'case-study', level: 'bsn', price: 10.99, fileUrl: '/documents/sample1.pdf', imageUrl: '/images/sample1.jpg' },
-  { id: '2', title: 'Sample Document 2', description: 'This is another sample.', category: 'care-plan', level: 'msn', price: 15.50, fileUrl: '/documents/sample2.pdf', imageUrl: '/images/sample2.jpg' },
-];
+import { documents } from '@/lib/data';
+import { Document } from '@/types/document';
 
 // GET all documents
 export async function GET(request: NextRequest) {
@@ -37,7 +31,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
-    const newDocument = {
+    const newDocument: Document = {
       id: uuidv4(),
       title,
       description,
