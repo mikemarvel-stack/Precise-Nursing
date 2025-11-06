@@ -2,16 +2,26 @@
 
 ## 1. Database Setup (PostgreSQL)
 
-### Option A: Vercel Postgres (Recommended)
-1. Go to [vercel.com](https://vercel.com) → Dashboard
-2. Click "Storage" → "Create Database" → "Postgres"
-3. Name: `precisenursing-db`
-4. Copy the connection string: `DATABASE_URL=postgresql://...`
+### Option A: Neon (Recommended - Free)
+1. Go to [neon.tech](https://neon.tech) → Sign up
+2. Create new project: `precisenursing-db`
+3. Copy connection string from dashboard
+4. Format: `DATABASE_URL=postgresql://user:pass@host/db?sslmode=require`
 
 ### Option B: Railway
 1. Go to [railway.app](https://railway.app) → New Project
 2. Add PostgreSQL service
 3. Copy connection string from Variables tab
+
+### Option C: Supabase
+1. Go to [supabase.com](https://supabase.com) → New project
+2. Project Settings → Database → Connection string
+3. Use the "URI" format for `DATABASE_URL`
+
+### Option D: Vercel Postgres (If Available)
+1. Vercel Dashboard → Storage tab
+2. Create Postgres database (if option exists)
+3. Copy connection string
 
 ## 2. Payment Processing
 
