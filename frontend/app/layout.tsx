@@ -1,18 +1,21 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Navbar } from "@/components/layout/navbar";
+import { Inter } from 'next/font/google';
+import { Metadata } from 'next';
 import { Footer } from "@/components/layout/footer";
-import { generateSEOMetadata } from "@/components/seo-head";
 import Script from "next/script";
-import "./globals.css";
+import { Header } from "@/components/layout/header";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter'
+  variable: '--font-inter',
 });
 
-export const metadata: Metadata = generateSEOMetadata();
+export const metadata: Metadata = {
+  title: 'Precise Nursing',
+  description: 'High-quality academic documents, assignments and custom nursing solutions.',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -25,7 +28,7 @@ export default function RootLayout({
         className={`${inter.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <Navbar />
+        <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
         

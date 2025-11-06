@@ -66,30 +66,46 @@ export default function ContentManagerPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    const docData = {
-      id: editingDoc?.id || Date.now().toString(),
-      ...formData,
-      fileName: formData.file?.name,
-      status: 'published' as const,
-      createdAt: editingDoc?.createdAt || new Date().toISOString()
+
+    const data = new FormData()
+    data.append('title', formData.title)
+    data.append('description', formData.description)
+    data.append('category', formData.category)
+    data.append('level', formData.level)
+    data.append('price', formData.price.toString())
+    if (formData.file) {
+      data.append('file', formData.file)
+    }
+    if (formData.image) {
+      data.append('image', formData.image)
+    }
+
+    let url = '/api/documents'
+    let method = 'POST'
+
+    if (editingDoc) {
+      url = `/api/documents/${editingDoc.id}`
+      method = 'PUT'
+      data.append('id', editingDoc.id)
     }
 
     try {
-      const response = await fetch('/api/documents', {
-        method: editingDoc ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(docData)
+      const response = await fetch(url, {
+        method: method,
+        body: data, // No 'Content-Type' header, browser sets it for FormData
       })
 
       if (response.ok) {
         await loadDocuments()
         resetForm()
-        alert(editingDoc ? 'Document updated!' : 'Document created!')
+        alert(editingDoc ? 'Document updated successfully!' : 'Document created successfully!')
+      } else {
+        const errorData = await response.json()
+        alert(`Failed to save document: ${errorData.message}`)
       }
     } catch (error) {
       console.error('Failed to save document:', error)
-      alert('Failed to save document')
+      alert('An error occurred while saving the document.')
     }
   }
 
@@ -117,7 +133,7 @@ export default function ContentManagerPage() {
 
       if (response.ok) {
         await loadDocuments()
-        alert('Document deleted!')
+        alert('Document deleted successfully!')
       }
     } catch (error) {
       console.error('Failed to delete document:', error)

@@ -78,8 +78,8 @@ export function AdminNavbar() {
         </div>
 
         {isOpen && (
-          <div className="md:hidden py-4 border-t">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-4 border-t bg-white">
+            <div className="flex flex-col space-y-4 px-6">
               {navItems.map((item) => (
                 <a
                   key={item.href}
