@@ -10,7 +10,7 @@ When creating projects on Vercel, use these names (no hyphens allowed):
 - **Root Directory**: `frontend`
 
 ### Backend Project  
-- **Name**: `precisenursingbackend`
+- **Name**: `precisenursing_backend` (or `precisenursingapi`)
 - **Repository**: Connect your GitHub repo `Precise-Nursing`
 - **Root Directory**: `backend`
 
@@ -25,7 +25,7 @@ When creating projects on Vercel, use these names (no hyphens allowed):
 4. Root Directory: frontend
 5. Framework Preset: Next.js
 6. Add Environment Variables:
-   - NEXT_PUBLIC_API_URL=https://precisenursingbackend.vercel.app
+   - NEXT_PUBLIC_API_URL=https://precisenursing-backend.vercel.app
    - NEXT_PUBLIC_SITE_URL=https://precisenursing.vercel.app
    - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_YOUR_STRIPE_PUBLISHABLE_KEY
 7. Deploy
@@ -36,7 +36,7 @@ When creating projects on Vercel, use these names (no hyphens allowed):
 # In Vercel dashboard:
 1. New Project → Import Git Repository  
 2. Select: Precise-Nursing repository
-3. Project Name: precisenursingbackend
+3. Project Name: precisenursing_backend
 4. Root Directory: backend
 5. Framework Preset: Other
 6. Add Environment Variables (see PRODUCTION_ENV.md)
@@ -47,7 +47,7 @@ When creating projects on Vercel, use these names (no hyphens allowed):
 After both deployments, update the URLs:
 
 **Frontend Environment Variables:**
-- `NEXT_PUBLIC_API_URL` = `https://precisenursingbackend.vercel.app`
+- `NEXT_PUBLIC_API_URL` = `https://precisenursing-backend.vercel.app`
 
 **Backend Environment Variables:**
 - `FRONTEND_URL` = `https://precisenursing.vercel.app`
@@ -59,6 +59,7 @@ After both deployments, update the URLs:
 - ❌ `123precisenursing` (starts with digit)
 - ✅ `precisenursing` (valid)
 - ✅ `precisenursing_backend` (valid with underscore)
+- ✅ `precisenursingapi` (alternative valid name)
 
 ### Build Errors
 - Ensure correct root directory is selected
