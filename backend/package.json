@@ -36,6 +36,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^5.3.4",
     "redis": "^4.6.12",
+    "styled-components": "^5.3.11",
     "stripe": "^14.9.0",
     "validator": "^13.11.0"
   },
