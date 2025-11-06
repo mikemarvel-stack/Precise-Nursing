@@ -1,74 +1,58 @@
-import { NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
 
-const dataFilePath = path.join(process.cwd(), 'data', 'documents.json')
+import { NextRequest, NextResponse } from 'next/server';
+import { v4 as uuidv4 } from 'uuid';
 
-async function getDocuments() {
-  try {
-    const data = await fs.readFile(dataFilePath, 'utf-8')
-    return JSON.parse(data)
-  } catch (error) {
-    // If file doesn't exist, return empty array
-    return []
-  }
-}
-
-async function saveDocuments(documents: any[]) {
-  await fs.mkdir(path.dirname(dataFilePath), { recursive: true })
-  await fs.writeFile(dataFilePath, JSON.stringify(documents, null, 2))
-}
+// In-memory data store (replace with a database in production)
+// NOTE: This should be the same data source as in [id]/route.ts.
+// For a real app, move this to a shared module or a database.
+let documents = [
+  { id: '1', title: 'Sample Document 1', description: 'This is a sample.', category: 'case-study', level: 'bsn', price: 10.99, fileUrl: '/documents/sample1.pdf', imageUrl: '/images/sample1.jpg' },
+  { id: '2', title: 'Sample Document 2', description: 'This is another sample.', category: 'care-plan', level: 'msn', price: 15.50, fileUrl: '/documents/sample2.pdf', imageUrl: '/images/sample2.jpg' },
+];
 
 // GET all documents
-export async function GET() {
-  const documents = await getDocuments()
-  return NextResponse.json(documents)
-}
-
-// POST a new document
-export async function POST(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const documents = await getDocuments()
-    const formData = await request.formData()
-
-    const newDocument = {
-      id: Date.now().toString(),
-      title: formData.get('title') as string,
-      description: formData.get('description') as string,
-      category: formData.get('category') as string,
-      level: formData.get('level') as string,
-      price: parseFloat(formData.get('price') as string),
-      status: 'published' as const,
-      createdAt: new Date().toISOString(),
-      fileName: (formData.get('file') as File)?.name || '',
-      imageUrl: (formData.get('image') as File)?.name ? `/uploads/${(formData.get('image') as File).name}` : '',
-    }
-
-    // In a real app, you would save the files to a storage service (e.g., S3, or public/uploads)
-    // For this example, we are just using the file names.
-
-    documents.push(newDocument)
-    await saveDocuments(documents)
-
-    return NextResponse.json(newDocument, { status: 201 })
+    return NextResponse.json(documents);
   } catch (error) {
-    console.error('Failed to create document:', error)
-    return NextResponse.json({ message: 'Failed to create document' }, { status: 500 })
+    console.error('Failed to get documents:', error);
+    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
 
-export async function PUT(request: Request) {
+// CREATE a new document
+export async function POST(request: NextRequest) {
   try {
-    const data = await request.json()
-    const documents = await getDocuments()
-    const index = documents.findIndex(doc => doc.id === data.id)
-    if (index === -1) {
-      return NextResponse.json({ error: 'Document not found' }, { status: 404 })
+    const formData = await request.formData();
+    const title = formData.get('title') as string;
+    const description = formData.get('description') as string;
+    const category = formData.get('category') as string;
+    const level = formData.get('level') as string;
+    const price = parseFloat(formData.get('price') as string);
+    // In a real app, you would handle file uploads and get URLs
+    const file = formData.get('file') as File | null;
+    const image = formData.get('image') as File | null;
+
+    if (!title || !description || !category || !level || isNaN(price)) {
+        return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
-    documents[index] = { ...documents[index], ...data }
-    await saveDocuments(documents)
-    return NextResponse.json(documents[index])
+
+    const newDocument = {
+      id: uuidv4(),
+      title,
+      description,
+      category,
+      level,
+      price,
+      fileUrl: file ? `/documents/${file.name}` : '', // Placeholder URL
+      imageUrl: image ? `/images/${image.name}` : '', // Placeholder URL
+    };
+
+    documents.push(newDocument);
+
+    return NextResponse.json(newDocument, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to update document' }, { status: 500 })
+    console.error('Failed to create document:', error);
+    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
