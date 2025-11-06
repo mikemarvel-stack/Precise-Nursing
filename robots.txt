@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /api/
+
+# Allow important pages
+Allow: /documents
+Allow: /custom-order
+Allow: /auth/
+
+# Sitemap location
+Sitemap: https://precisenursing.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
