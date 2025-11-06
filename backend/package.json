@@ -9,7 +9,8 @@
     "start": "strapi start",
     "strapi": "strapi",
     "backup": "node scripts/backup.js",
-    "ssl-renew": "certbot renew --nginx"
+    "ssl-renew": "certbot renew --nginx",
+    "vercel-build": "strapi build"
   },
   "dependencies": {
     "@strapi/plugin-email": "4.25.9",
