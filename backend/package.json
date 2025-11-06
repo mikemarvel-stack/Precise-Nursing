@@ -1,0 +1,58 @@
+{
+  "name": "precisenursing-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "PreciseNursing Healthcare Platform Backend",
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "backup": "node scripts/backup.js",
+    "ssl-renew": "certbot renew --nginx"
+  },
+  "dependencies": {
+    "@strapi/plugin-email": "4.25.9",
+    "@strapi/plugin-i18n": "4.25.9",
+    "@strapi/plugin-upload": "4.25.9",
+    "@strapi/plugin-users-permissions": "4.25.9",
+    "@strapi/provider-email-amazon-ses": "4.25.9",
+    "@strapi/provider-upload-aws-s3": "4.25.9",
+    "@strapi/strapi": "4.25.9",
+    "ajv": "^8.12.0",
+    "aws-sdk": "^2.1691.0",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.8",
+    "paypal-rest-sdk": "^1.8.1",
+    "pg": "^8.11.3",
+    "rate-limiter-flexible": "^4.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "redis": "^4.6.12",
+    "stripe": "^14.9.0",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.5",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.10.5",
+    "@types/node-cron": "^3.0.11",
+    "typescript": "^5.3.3"
+  },
+  "author": {
+    "name": "PreciseNursing Team"
+  },
+  "strapi": {
+    "uuid": "precisenursing-backend"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

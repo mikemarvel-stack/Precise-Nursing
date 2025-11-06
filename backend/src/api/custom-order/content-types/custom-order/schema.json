@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "custom_orders",
+  "info": {
+    "singularName": "custom-order",
+    "pluralName": "custom-orders",
+    "displayName": "Custom Order"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["nursing-assignment", "case-study", "care-plan", "research-paper", "exam-prep", "clinical-notes", "nursing-essay"],
+      "required": true
+    },
+    "nursingLevel": {
+      "type": "enumeration",
+      "enum": ["lpn", "rn", "bsn", "msn", "dnp", "phd-nursing"],
+      "required": true
+    },
+    "subject": {
+      "type": "string",
+      "required": true
+    },
+    "pages": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "deadline": {
+      "type": "datetime",
+      "required": true
+    },
+    "instructions": {
+      "type": "richtext"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["files"]
+    },
+    "quotedPrice": {
+      "type": "decimal",
+      "min": 0
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["submitted", "quoted", "accepted", "in-progress", "completed", "delivered", "cancelled"],
+      "default": "submitted"
+    },
+    "customerEmail": {
+      "type": "email",
+      "required": true
+    },
+    "customerName": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "adminNotes": {
+      "type": "text"
+    },
+    "deliveredFile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["files"]
+    }
+  }
+}

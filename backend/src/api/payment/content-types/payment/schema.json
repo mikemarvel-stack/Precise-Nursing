@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "singularName": "payment",
+    "pluralName": "payments",
+    "displayName": "Payment",
+    "description": "Payment transactions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "amount": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "currency": {
+      "type": "string",
+      "required": true,
+      "default": "usd"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "completed", "failed", "refunded", "cancelled"],
+      "default": "pending",
+      "required": true
+    },
+    "provider": {
+      "type": "enumeration",
+      "enum": ["stripe", "paypal"],
+      "default": "stripe"
+    },
+    "stripePaymentIntentId": {
+      "type": "string",
+      "unique": true
+    },
+    "paypalOrderId": {
+      "type": "string",
+      "unique": true
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "refundAmount": {
+      "type": "decimal",
+      "min": 0
+    },
+    "refundReason": {
+      "type": "string"
+    },
+    "refundDate": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "payments"
+    }
+  }
+}
