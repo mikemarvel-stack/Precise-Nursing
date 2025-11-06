@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { documents } from '@/lib/data';
-import { Document } from '@/types/document';
+import { documents, Document } from '../data';
 
 // GET a single document by ID
 export async function GET(
@@ -9,12 +8,14 @@ export async function GET(
 ) {
   try {
     const document = documents.find(doc => doc.id === params.id);
+
     if (!document) {
       return NextResponse.json({ message: 'Document not found' }, { status: 404 });
     }
+
     return NextResponse.json(document);
   } catch (error) {
-    console.error('Failed to get document:', error);
+    console.error('Failed to fetch document:', error);
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
@@ -62,7 +63,7 @@ export async function PUT(
 // DELETE a document by ID
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id:string } }
+  { params }: { params: { id: string } }
 ) {
   try {
     const docIndex = documents.findIndex(doc => doc.id === params.id);
