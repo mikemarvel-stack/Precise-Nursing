@@ -3,7 +3,7 @@
   "name": "precisenursing",
   "builds": [
     {
-      "src": "frontend/package.json",
+      "src": "frontend/next.config.js",
       "use": "@vercel/next"
     }
   ],
