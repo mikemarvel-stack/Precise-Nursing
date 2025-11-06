@@ -1,5 +1,5 @@
 export const seoConfig = {
-  title: 'Precise Nursing - Professional Nursing Documents & Solutions',
+  title: 'Precise Nursing',
   description: 'Get high-quality nursing documents, care plans, case studies, and custom academic solutions. Professional nursing resources for students and practitioners.',
   keywords: 'nursing documents, care plans, case studies, nursing assignments, medical documents, nursing solutions, healthcare documents',
   siteUrl: 'https://precisenursing.com',
