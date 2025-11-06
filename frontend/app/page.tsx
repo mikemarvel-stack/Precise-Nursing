@@ -9,8 +9,6 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <Hero />
-      <TrustSignals />
-      <Features />
       <section className="py-20 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden">
         {/* Abstract Background */}
         <div className="absolute inset-0">
@@ -32,6 +30,8 @@ export default function HomePage() {
           <NursingDocumentsList featured={true} limit={6} />
         </div>
       </section>
+      <TrustSignals />
+      <Features />
       <Pricing />
       <Testimonials />
     </div>
