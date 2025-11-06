@@ -20,13 +20,13 @@ export function Hero() {
               🎓 Trusted by 10,000+ Nursing Students
             </div>
             <h1 className="text-6xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-              Excellence in
+              Get A+ Grades with
               <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Nursing Education
+                Expert Nursing Solutions
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              Unlock your potential with premium nursing documents, expert-crafted assignments, and personalized academic support
+              Premium care plans, case studies & custom assignments by professional nurses. Instant downloads, 24/7 support, money-back guarantee.
             </p>
           </div>
           
@@ -36,7 +36,7 @@ export function Hero() {
               className="bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-2xl shadow-2xl hover:shadow-white/20"
               onClick={() => window.location.href = '/documents'}
             >
-              📚 Explore Solutions
+              📚 Browse 1000+ Documents
               <ArrowRight className="ml-3 w-5 h-5" />
             </Button>
             <Button 
@@ -44,7 +44,7 @@ export function Hero() {
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-2xl shadow-2xl hover:shadow-purple-500/30"
               onClick={() => window.location.href = '/custom-order'}
             >
-              ✨ Custom Order
+              ✨ Get Custom Solution
             </Button>
           </div>
 

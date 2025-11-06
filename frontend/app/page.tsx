@@ -1,11 +1,15 @@
 import { NursingDocumentsList } from '@/components/nursing-documents-list'
 import { Hero } from '@/components/hero'
 import { Features } from '@/components/features'
+import { Testimonials } from '@/components/testimonials'
+import { Pricing } from '@/components/pricing'
+import { TrustSignals } from '@/components/trust-signals'
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       <Hero />
+      <TrustSignals />
       <Features />
       <section className="py-20 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden">
         {/* Abstract Background */}
@@ -28,6 +32,8 @@ export default function HomePage() {
           <NursingDocumentsList featured={true} limit={6} />
         </div>
       </section>
+      <Pricing />
+      <Testimonials />
     </div>
   )
 }
