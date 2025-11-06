@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Search, ShoppingCart, Eye, Star } from 'lucide-react'
+import { useCart } from '@/components/cart'
 
 interface NursingDocument {
   id: number
@@ -80,13 +81,17 @@ export function NursingDocumentsList({ featured = false, limit }: Props) {
     return matchesSearch && matchesCategory
   })
 
-  const handlePurchase = (docId: number) => {
-    const isLoggedIn = localStorage.getItem('token')
-    if (!isLoggedIn) {
-      window.location.href = '/auth/login?redirect=/documents/' + docId
-    } else {
-      window.location.href = '/payment?document=' + docId
-    }
+  const { addToCart } = useCart()
+
+  const handleAddToCart = (doc: NursingDocument) => {
+    addToCart({
+      id: doc.id,
+      title: doc.title,
+      price: doc.price,
+      category: doc.category
+    })
+    // Show success message or update UI
+    alert('Added to cart!')
   }
 
   if (loading) {
@@ -115,6 +120,7 @@ export function NursingDocumentsList({ featured = false, limit }: Props) {
               variant={selectedCategory === 'all' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setSelectedCategory('all')}
+              className={selectedCategory === 'all' ? 'bg-blue-600 text-white' : 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50'}
             >
               All Categories
             </Button>
@@ -124,6 +130,7 @@ export function NursingDocumentsList({ featured = false, limit }: Props) {
                 variant={selectedCategory === category ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedCategory(category)}
+                className={selectedCategory === category ? 'bg-blue-600 text-white' : 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50'}
               >
                 {category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
               </Button>
@@ -187,12 +194,12 @@ export function NursingDocumentsList({ featured = false, limit }: Props) {
                     Preview
                   </Button>
                   <Button 
-                    onClick={() => handlePurchase(doc.id)}
+                    onClick={() => handleAddToCart(doc)}
                     size="sm"
                     className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     <ShoppingCart className="w-4 h-4 mr-2" />
-                    Buy Now
+                    Add to Cart
                   </Button>
                 </div>
               </div>

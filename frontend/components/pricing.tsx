@@ -63,9 +63,9 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {pricingPlans.map((plan, index) => (
-            <div key={index} className={`relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 ${plan.popular ? 'ring-2 ring-blue-500 scale-105' : ''}`}>
+            <div key={index} className={`relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${plan.popular ? 'ring-2 ring-blue-500 scale-102' : ''}`}>
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -74,20 +74,20 @@ export function Pricing() {
                 </div>
               )}
               
-              <div className="text-center mb-8">
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${plan.popular ? 'bg-gradient-to-r from-blue-500 to-purple-600' : 'bg-gray-100'}`}>
-                  <plan.icon className={`w-8 h-8 ${plan.popular ? 'text-white' : 'text-gray-600'}`} />
+              <div className="text-center mb-6">
+                <div className={`w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center ${plan.popular ? 'bg-gradient-to-r from-blue-500 to-purple-600' : 'bg-gray-100'}`}>
+                  <plan.icon className={`w-6 h-6 ${plan.popular ? 'text-white' : 'text-gray-600'}`} />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="text-4xl font-bold text-blue-600 mb-2">{plan.price}</div>
-                <p className="text-gray-600">{plan.description}</p>
+                <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+                <div className="text-3xl font-bold text-blue-600 mb-2">{plan.price}</div>
+                <p className="text-sm text-gray-600">{plan.description}</p>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-3 mb-6">
                 {plan.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
+                    <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                    <span className="text-sm text-gray-700">{feature}</span>
                   </li>
                 ))}
               </ul>

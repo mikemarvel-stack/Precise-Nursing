@@ -97,9 +97,15 @@ export default function AdminDashboard() {
               <div className="bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-2 rounded-full text-sm font-medium">
                 🟢 System Healthy
               </div>
-              <Button onClick={() => window.open('/admin', '_blank')} className="bg-gradient-to-r from-blue-500 to-purple-600">
-                <Settings className="w-4 h-4 mr-2" />
-                Strapi Admin
+              <Button 
+                onClick={() => {
+                  localStorage.removeItem('user')
+                  window.location.href = '/'
+                }} 
+                variant="outline"
+                className="border-red-200 text-red-600 hover:bg-red-50"
+              >
+                Logout
               </Button>
             </div>
           </div>
